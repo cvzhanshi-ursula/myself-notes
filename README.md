@@ -1,37 +1,38 @@
-# myself-notes
+# cv战士的学习笔记仓库
 
-#### 介绍
-自己的笔记
+## 介绍
 
-#### 软件架构
-软件架构说明
+> 本人介绍
 
+作者目前主要专注Java开发，当然从事的工作也是Java后端开发，现目前就业于北京某大厂。
 
-#### 安装教程
+> 仓库介绍
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+**本仓库为作者本人一路学习Java的学习笔记，都是记录了学习的脚印**
 
-#### 使用说明
+现放码出于两方面考虑：
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+- 方便自己不在本人的电脑上可以随时查看自己的笔记
+- 有需要的人可以自己领取参考（当然有大佬也可以指点指点学习方法以及学习路线）
 
-#### 参与贡献
+> 脚本介绍
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+可以看到根目录下有个update.sh的脚本，它的作用是方便于每次更改内容的提交以及推到马云上。（能用代码解决的事情肯定用代码解决哈哈）
 
+内容如下
 
-#### 特技
+```sh
+git add *
+git commit -m "$(date) update $*" *
+git push notes master
+```
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+就是很简单的三个git命令
+
+只需要给她执行权限后，执行它就行
+
+```sh
+# 其中提交信息是参数用来替换脚本中的$*的
+./update.sh  提交信息
+```
+
