@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿# 多线程
+﻿﻿﻿# 多线程
 
 ## 基本概念
 
@@ -52,7 +52,7 @@
 - 问题二：如果再启动一个线程，必须重新创建一个Thread子类的对象，调用此对象的start()
 
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113032546.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170652159.png)
 
 #### 方式二：实现Runnable接口的方式
 
@@ -62,7 +62,7 @@
 * 4. 将此对象作为参数传递到Thread类的构造器中，创建Thread类的对象
 * 5. 通过Thread类的对象调用start()
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113019850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170656857.png)
 
 
 #### 比较创建线程的两种方式
@@ -128,7 +128,7 @@ Thread中常用方法:
 - 阻塞：在某种特殊情况下，被人为挂起或执行输入输出操作时，让出 CPU 并临时中 止自己的执行，进入阻塞状态 
 - 死亡：线程完成了它的全部工作或线程被提前强制性地中止或出现异常导致结束  
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113002137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170702206.png)
 
 
 ## 线程的同步(解决线程的安全问题)
@@ -147,18 +147,18 @@ Thread中常用方法:
 
 #### 方式一：同步代码块
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021042911295263.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170705395.png)
 
 
 #### 方式二：同步方法
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112943234.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170709198.png)
 
 #### 方式三：Lock锁  --- JDK5.0新增
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112929752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170712942.png)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112918846.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170715946.png)
 
 
 #### 同步方式的优缺点
@@ -172,12 +172,12 @@ Thread中常用方法:
 
 #### 使用同步机制将单例模式中的懒汉式改写为线程安全的
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112906247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170718826.png)
 
 
 ## 线程的通信
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112845150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170723014.png)
 
 
 
@@ -186,20 +186,20 @@ Thread中常用方法:
 
 ### 新增方式一：实现Callable接口
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112835744.png)
+![在这里插入图片描述](./JavaSenior.assets/20210429112835744.png)
 
 
 **具体使用**
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112827861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170729853.png)
 
 
 ### 新增方式二：使用线程池
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112813754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170734069.png)
 
 **具体使用**
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429112802392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170857568.png)
 
 # 常用类
 
@@ -253,7 +253,7 @@ System.out.println(s5);//mbc
 
 #### 图示内存解析
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113513702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170903241.png)
 
 
 ### String对象的创建
@@ -281,9 +281,9 @@ System.out.println(s3 == s4);//false
 
 #### 图示
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113437195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113446683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113456170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170909152.png)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170917007.png)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123170921279.png)
 
 
 #### 面试题
@@ -693,7 +693,7 @@ System.out.println(time);
 
 ## java 8 中新的日期时间API涉及到的包
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021042911335392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171010704.png)
 
 
 ### 本地日期、本地时间、本地日期时间的使用：LocalDate / LocalTime / LocalDateTime
@@ -704,7 +704,7 @@ System.out.println(time);
 
 #### 常用方法
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/202104291133243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171014165.png)
 
 
 #### 代码展示
@@ -765,7 +765,7 @@ System.out.println(time);
 
 #### 常用方法
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113307899.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171019886.png)
 
 
 ### 日期时间格式化类：DateTimeFormatter
@@ -781,7 +781,7 @@ System.out.println(time);
 预定义的标准格式。如：ISO_LOCAL_DATE_TIME;ISO_LOCAL_DATE;ISO_LOCAL_TIME
 本地化相关的格式。如：ofLocalizedDateTime(FormatStyle.LONG)自定义的格式。如：ofPattern(“yyyy-MM-dd hh:mm:ss”)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113258834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171023572.png)
 
 
 
@@ -1154,12 +1154,12 @@ public @interface MyAnnotation {
 
 ①
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113858222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171039595.png)
 
 
 ②
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429113850311.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171043541.png)
 
 
 #### 类型注解：
@@ -1181,7 +1181,7 @@ class Generic<@MyAnnotation T>{
 }
 ~~~
 
-![](https://img-blog.csdnimg.cn/2021042911384168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171049190.png)
 
 
 
@@ -1224,7 +1224,7 @@ class Generic<@MyAnnotation T>{
 
 **对应图示**
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429114156309.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171058305.png)
 
 ### Collection接口常用方法
 
@@ -1409,7 +1409,7 @@ while(iterator.hasNext()){
 
 图例:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429114138529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171113439.png)
 
 
 ### iterator的错误使用
@@ -1715,7 +1715,7 @@ jdk 8 :原来的元素在数组中，指向元素a
 HashSet底层：数组+链表的结构。（前提：jdk7)
 
 图示:
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429114111770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171131882.png)
 
 ### 常用实现类
 
@@ -1881,7 +1881,7 @@ HashSet底层：数组+链表的结构。（前提：jdk7)
 - Map中的entry:无序的、不可重复的，使用Set存储所的entry
 
 图示:
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429114053788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171150169.png)
 
 
 ### 常用方法
@@ -2066,7 +2066,7 @@ HashMap map = new HashMap():
 
 #### LinkedHashMap的底层实现原理
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429114035755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171200415.png)
 
 
 ### TreeMap的使用
@@ -2141,7 +2141,7 @@ public static void main(String[] args)  {
 ~~~
 
 图示：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429115048722.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171238802.png)
 
 ### 集合使用泛型后
 
@@ -2177,7 +2177,7 @@ public static void main(String[] args)  {
 ~~~
 
 图示:
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021042911502987.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171242012.png)
 
 
 ### 在集合中使用泛型例子2
@@ -2587,9 +2587,9 @@ Eclipse中：
 
 ### File类的常用方法
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194307768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194321538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194331788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171256523.png)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171300646.png)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171304770.png)
 
 ## IO流的概述
 
@@ -2600,12 +2600,12 @@ Eclipse中：
 * 3.流的角色：节点流、处理流
 
 图示:
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194251702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171308528.png)
 
 
 ### 流的体系结构
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194241906.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171312907.png)
 
 
 说明：红框对应的是IO流中的4个抽象基类。
@@ -2613,7 +2613,7 @@ Eclipse中：
 
 ### 重点说明的几个流结构
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194232477.png)
+![在这里插入图片描述](./JavaSenior.assets/20210429194232477.png)
 
 
 ### 输入、输出的标准化过程
@@ -2951,7 +2951,7 @@ public void testFileInputOutputStream()  {
 ### 作用
 
 作用：提供流的读取、写入的速度提高读写速度的原因：内部提供了一个缓冲区。默认情况下是8kb
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194209126.png)
+![在这里插入图片描述](./JavaSenior.assets/20210429194209126.png)
 
 
 ### 典型代码
@@ -3086,7 +3086,7 @@ OutputStreamWriter：将一个字符的输出流转换为字节的输出流
 
 图示：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194154848.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171335248.png)
 
 
 ### 典型实现代码
@@ -3379,12 +3379,12 @@ Path替换原有的File类
 
 ####  如何实例化
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194133162.png)
+![在这里插入图片描述](./JavaSenior.assets/20210429194133162.png)
 
 
 #### 常用方法
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194127109.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171352730.png)
 
 
 ### Files工具类
@@ -3395,9 +3395,9 @@ Path替换原有的File类
 
 #### 常用方法
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194113875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171358077.png)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021042919410457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171403071.png)
 
 
 ## 一些类的使用
@@ -3751,18 +3751,18 @@ public class InetAddressTest {
 
 #### 分型模型
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194657470.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171415637.png)
 
 
 #### TCP和UDP的区别
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194649239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171420139.png)
 
 
 #### TCP三次握手和四次挥手
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194627181.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194638879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171427641.png)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171433272.png)
 
 
 ## TCP网络编程
@@ -4060,7 +4060,7 @@ public void receiver() throws IOException {
 URL url = new URL("http://localhost:8080/examples/beauty.jpg?username=Tom");
 
 4.常用方法：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194552338.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171444171.png)
 
 
 代码:
@@ -4236,7 +4236,7 @@ public Object getInstance(String classPath) throws Exception {
 
 ### 反射机制能提供的功能
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429195030212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171451412.png)
 
 
 ## Class类的理解与获取Class的实例
@@ -4288,7 +4288,7 @@ public Object getInstance(String classPath) throws Exception {
 
 ### Class实例可以是哪些结构的说明
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429195005706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171459625.png)
 
 ~~~java
 Class c1 = Object.class;
@@ -4313,22 +4313,22 @@ System.out.println(c10 == c11);
 
 ### 类的加载过程
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194954620.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171505950.png)
 
 
 ### 类的加载器的作用
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194946634.png)
+![在这里插入图片描述](./JavaSenior.assets/20210429194946634.png)
 
 
 ### 类的加载器的分类
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194938530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171515066.png)
 
 
 ### Java类编译、运行的执行的流程
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194930729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171519266.png)
 
 
 ### 使用Classloader加载src目录下的配置文件
@@ -4904,7 +4904,7 @@ public class ProxyTest {
 
 ~~~
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429194847852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171538051.png)
 
 #### 体会
 
@@ -4914,8 +4914,8 @@ public class ProxyTest {
 
 ## 概述
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429195414324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429195420805.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171544060.png)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171549831.png)
 
 ## Lambda表达式
 
@@ -4983,7 +4983,7 @@ public void test2(){
 
 ### 如何使用：分为六种情况
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021042919535869.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171558642.png)
 
 
 ### 总结六种情况
@@ -5001,7 +5001,7 @@ Lambda表达式的本质：作为函数式接口的实例
 
 ### Java8中关于Lambda表达式提供的4个基本的函数式接口
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021042919534163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171609248.png)
 
 
 ### 总结
@@ -5319,7 +5319,7 @@ public void test4(){
 
 ### 步骤二：中间操作
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429195257271.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/202104291953044.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171622774.png)![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171636703.png)
 
 
 
@@ -5440,11 +5440,11 @@ public void test4(){
 
 ### 步骤三：终止操作
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429195230382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429195240398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171651972.png)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171720455.png)
 
 Collector需要使用Collectors提供实例
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210429195202370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](./JavaSenior.assets/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDA4Mzkw,size_16,color_FFFFFF,t_70-20231123171723658.png)
 
 ~~~java
 //1-匹配与查找
