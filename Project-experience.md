@@ -949,3 +949,16 @@ public static String md5(String source) {
 $ nohup java -jar test.jar >temp.txt &
 ```
 
+## 线程池问题
+
+创建了一个线程池
+
+```java
+ExecutorService taskExecutorService = new ThreadPoolExecutor(1, 10, 60, TimeUnit.SECONDS,
+        new LinkedBlockingQueue<>(1024),
+        BasicThreadFactory.builder().namingPattern("stats_report_%d").build(),
+        new ThreadPoolExecutor.AbortPolicy()
+); 
+```
+
+其中：**如果队列没满，那么只有核心线程数的线程工作，如果队列满了就会新建线程进行工作，直到最大线程数**
