@@ -751,21 +751,19 @@ vim 则可以说是程序开发者的一项很好用的工具。
 [root@cVzhanshi cvzhanshi]# vim cvzhanshi.txt
 ```
 
-![1626762424619](Linux.assets/1626762424619.png)
-
 **按下 i 进入输入模式(也称为编辑模式)，开始编辑文字**
 
 在一般模式之中，只要按下 i, o, a 等字符就可以进入输入模式了！
 
 在编辑模式当中，你可以发现在左下角状态栏中会出现 –INSERT- 的字样，那就是可以输入任意字符的提示。
 
-![1626762520119](Linux.assets/1626762520119.png)
+![1626762520119](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626762520119.png)
 
 如何退出？
 
  **按下 ESC 按钮回到一般模式** ，在一般模式中按下 **:wq** 储存后离开 vim！
 
-![1626762569743](Linux.assets/1626762569743.png)
+![1626762569743](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626762569743.png)
 
 ### 2.5.4  Vim 按键说明 
 
@@ -1478,7 +1476,7 @@ java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.x86_64
 
 - 先把jdk的rpm包传进Linux系统中
 
-![1626837692710](Linux.assets/1626837692710.png)
+![1626837692710](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626837692710.png)
 
 -  然后使用命令安装 
 
@@ -1486,11 +1484,11 @@ java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.x86_64
 [root@cVzhanshi soft]# rpm -ivh jdk-8u221-linux-x64.rpm
 ```
 
-![1626845259791](Linux.assets/1626845259791.png)
+![1626845259791](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626845259791.png)
 
 - 查看安装成功后，生成的文件
 
-![1626845932978](Linux.assets/1626845932978.png)
+![1626845932978](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626845932978.png)
 
 - 配置环境变量
 
@@ -1518,11 +1516,11 @@ source /etc/profile
 [root@cVzhanshi soft]# java -jar springboot-01-helloworld-0.0.1-SNAPSHOT.jar 
 ```
 
-![1626847674226](Linux.assets/1626847674226.png)
+![1626847674226](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626847674226.png)
 
 - 在Windows中访问
 
-![1626847699012](Linux.assets/1626847699012.png)
+![1626847699012](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626847699012.png)
 
 **jdk安装成功**
 
@@ -1580,11 +1578,11 @@ apache-tomcat-9.0.22.tar.gz
 
 -  确保Linux的防火墙端口是开启的，如果是阿里云，需要保证阿里云的安全组策略是开放的
 
-![1626850170044](Linux.assets/1626850170044.png)
+![1626850170044](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626850170044.png)
 
 - Windows下访问
 
-![1626850228750](Linux.assets/1626850228750.png)
+![1626850228750](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/1626850228750.png)
 
 - 安装成功
 

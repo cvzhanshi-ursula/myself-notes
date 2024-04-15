@@ -1,6 +1,6 @@
 # 1、什么是JUC
 
-![image-20210914103935194](JUC.assets/image-20210914103935194.png)
+![image-20210914103935194](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/image-20210914103935194.png)
 
 java.util工具包
 
@@ -8,11 +8,11 @@ java.util工具包
 
 **Runnable：** 没有返回值、效率相比于**Callable** 相对较低！
 
-![image-20210914110333187](JUC.assets/image-20210914110333187.png)
+![image-20210914110333187](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/image-20210914110333187.png)
 
 -----
 
-![image-20210914110438228](JUC.assets/image-20210914110438228.png)
+![image-20210914110438228](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/image-20210914110438228.png)
 
 # 2、线程和进程
 
