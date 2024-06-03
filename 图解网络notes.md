@@ -20,7 +20,7 @@
 
 应用层的数据包会传给传输层，**传输层**（*Transport Layer*）是为应用层提供网络支持的。**传输层的设计理念是简单、高效、专注**。
 
-<img src="图解网络notes.assets/应用层.png" alt="img" style="zoom: 67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/%E5%BA%94%E7%94%A8%E5%B1%82.png" alt="img" style="zoom: 67%;" />
 
 
 
@@ -32,7 +32,7 @@ UDP 相对来说就很简单，简单到**只负责发送数据包，不保证�
 
 应用需要传输的数据可能会非常大，如果直接传输就不好控制，因此当传输层的数据包大小超过 MSS（TCP 最大报文段长度） ，就要将数据包分块，这样即使中途有一个分块丢失或损坏了，只需要重新发送这一个分块，而不用重新发送整个数据包。在 TCP 协议中，我们把每个分块称为一个 **TCP 段**（*TCP Segment*）。
 
-<img src="图解网络notes.assets/TCP段-1717051222435-5.png" alt="img" style="zoom: 67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/TCP%E6%AE%B5-1717051222435-5.png" alt="img" style="zoom: 67%;" />
 
 
 
@@ -48,13 +48,13 @@ UDP 相对来说就很简单，简单到**只负责发送数据包，不保证�
 
 也就是说，我们不希望传输层协议处理太多的事情，只需要服务好应用即可，让其作为应用间数据传输的媒介，帮助实现应用到应用的通信，而实际的传输功能就交给下一层，也就是**网络层**（*Internet Layer*）。
 
-<img src="图解网络notes.assets/TCP段-1717051222435-5-1717051276103-9.png" alt="img" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/TCP%E6%AE%B5-1717051222435-5-1717051276103-9.png" alt="img" style="zoom:67%;" />
 
 
 
 网络层最常使用的是 IP 协议（*Internet Protocol*），IP 协议会将传输层的报文作为数据部分，再加上 IP 包头组装成 IP 报文，如果 IP 报文大小超过 MTU（以太网中一般为 1500 字节）就会**再次进行分片**，得到一个即将发送到网络的 IP 报文。
 
-<img src="图解网络notes.assets/12.jpg" alt="img" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/12.jpg" alt="img" style="zoom:67%;" />
 
 网络层负责将数据从一个设备传输到另一个设备，世界上那么多设备，又该如何找到对方呢？因此，网络层需要有区分设备的编号。
 
@@ -71,7 +71,7 @@ UDP 相对来说就很简单，简单到**只负责发送数据包，不保证�
 
 将 10.100.122.2 和 255.255.255.0 进行**按位与运算**，就可以得到**网络号**，如下图：
 
-<img src="图解网络notes.assets/TCP段-1717051222435-5-1717051276103-9-1717051294117-11.png" alt="img" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/TCP%E6%AE%B5-1717051222435-5-1717051276103-9-1717051294117-11.png" alt="img" style="zoom:67%;" />
 
 
 
@@ -85,7 +85,7 @@ UDP 相对来说就很简单，简单到**只负责发送数据包，不保证�
 
 路由器寻址工作中，就是要找到目标地址的子网，找到后进而把数据包转发给对应的网络内。
 
-<img src="图解网络notes.assets/17.jpg" alt="IP地址的网络号" style="zoom: 67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/17.jpg" alt="IP地址的网络号" style="zoom: 67%;" />
 
 
 
@@ -95,7 +95,7 @@ UDP 相对来说就很简单，简单到**只负责发送数据包，不保证�
 
 生成了 IP 头部之后，接下来要交给**网络接口层**（*Link Layer*）在 IP 头部的前面加上 MAC 头部，并封装成数据帧（Data frame）发送到网络上。
 
-<img src="图解网络notes.assets/网络接口层.png" alt="img" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E5%B1%82.png" alt="img" style="zoom:67%;" />
 
 **什么是以太网呢？**
 
@@ -127,12 +127,12 @@ ARP 主要攻击方式分为下面这几种
 
 综上所述，TCP/IP 网络通常是由上到下分成 4 层，分别是**应用层，传输层，网络层和网络接口层**。
 
-<img src="图解网络notes.assets/tcpip参考模型.drawio-1717051562654-19.png" alt="img" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/tcpip%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B.drawio-1717051562654-19.png" alt="img" style="zoom:67%;" />
 
 
 
 每一层的封装格式：
-<img src="图解网络notes.assets/tcpip参考模型.drawio-1717051562654-19.png" alt="img" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/tcpip%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B.drawio-1717051562654-19.png" alt="img" style="zoom:67%;" />
 
 
 
@@ -157,7 +157,7 @@ TCP/IP网络模型总共有**五层**
 
 首先浏览器做的第一步工作就是要对 `URL` 进行解析，从而生成发送给 `Web` 服务器的请求信息。
 
-<img src="https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E8%BF%87%E7%A8%8B/3.jpg" alt="URL 解析" style="zoom:50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/3.jpg" alt="URL 解析" style="zoom:50%;" />
 
 **要是上图中的蓝色部分 URL 元素都省略了，那应该是请求哪个文件呢？**
 
@@ -165,7 +165,7 @@ TCP/IP网络模型总共有**五层**
 
 对 `URL` 进行解析之后，浏览器确定了 Web 服务器和文件名，接下来就是根据这些信息来生成 HTTP 请求消息了。
 
-<img src="图解网络notes.assets/4.jpg" alt="HTTP 的消息格式" style="zoom: 33%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/4.jpg" alt="HTTP 的消息格式" style="zoom: 33%;" />
 
 ### 真是地址查询——DNS
 
@@ -191,7 +191,7 @@ DNS 中的域名都是用**句点**来分隔的，比如 `www.server.com`，这�
 - 顶级域 DNS 服务器（.com）
 - 权威 DNS 服务器（server.com）
 
-<img src="图解网络notes.assets/5.jpg" alt="DNS 树状结构" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/5.jpg" alt="DNS 树状结构" style="zoom:67%;" />
 
 根域的 DNS 服务器信息保存在互联网中所有的 DNS 服务器中。
 
@@ -203,7 +203,7 @@ DNS 中的域名都是用**句点**来分隔的，比如 `www.server.com`，这�
 
 
 
-<img src="图解网络notes.assets/6.jpg" alt="域名解析的工作流程" style="zoom: 67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/6.jpg" alt="域名解析的工作流程" style="zoom: 67%;" />
 
 浏览器会先看自身有没有对这个域名的缓存，如果有，就直接返回，如果没有，就去问操作系统，操作系统也会去看自己的缓存，如果有，就直接返回，如果没有，再去 hosts 文件看，也没有，才会去问「本地 DNS 服务器」。
 
@@ -213,7 +213,7 @@ DNS 中的域名都是用**句点**来分隔的，比如 `www.server.com`，这�
 
 协议栈的内部分为几个部分，分别承担不同的工作。上下关系是有一定的规则的，上面的部分会向下面的部分委托工作，下面的部分收到委托的工作并执行。
 
-<img src="图解网络notes.assets/7.jpg" alt="img" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/7.jpg" alt="img" style="zoom:67%;" />
 
 应用程序（浏览器）通过调用 Socket 库，来委托协议栈工作。协议栈的上半部分有两块，分别是负责收发数据的 TCP 和 UDP 协议，这两个传输协议会接受应用层的委托执行收发数据的操作。
 
@@ -230,7 +230,7 @@ IP 下面的网卡驱动程序负责控制网卡硬件，而最下面的网卡�
 
 > TCP包头格式
 
-<img src="图解网络notes.assets/8.jpg" alt="TCP 包头格式" style="zoom:67%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/8.jpg" alt="TCP 包头格式" style="zoom:67%;" />
 
 **源端口号**和**目标端口**号是不可少的，如果没有这两个端口号，数据就不知道应该发给哪个应用。
 
@@ -246,7 +246,7 @@ IP 下面的网卡驱动程序负责控制网卡硬件，而最下面的网卡�
 
 > TCP 传输数据之前，要先三次握手建立连接
 
-<img src="图解网络notes.assets/TCP三次握手.drawio.png" alt="TCP 三次握手" style="zoom: 50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.drawio.png" alt="TCP 三次握手" style="zoom: 50%;" />
 
 - 一开始，客户端和服务端都处于 `CLOSED` 状态。先是服务端主动监听某个端口，处于 `LISTEN` 状态。
 - 然后客户端主动发起连接 `SYN`，之后处于 `SYN-SENT` 状态。
@@ -260,14 +260,14 @@ IP 下面的网卡驱动程序负责控制网卡硬件，而最下面的网卡�
 
 如果 HTTP 请求消息比较长，超过了 `MSS` 的长度，这时 TCP 就需要把 HTTP 的数据拆解成一块块的数据发送，而不是一次性发送所有数据。
 
-<img src="图解网络notes.assets/11.jpg" alt="MTU 与 MSS" style="zoom:50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/11.jpg" alt="MTU 与 MSS" style="zoom:50%;" />
 
 - `MTU`：一个网络包的最大长度，以太网中一般为 `1500` 字节。
 - `MSS`：除去 IP 和 TCP 头部之后，一个网络包所能容纳的 TCP 数据的最大长度。
 
 数据会被以 `MSS` 的长度为单位进行拆分，拆分出来的每一块数据都会被放进单独的网络包中。也就是在每个被拆分的数据加上 TCP 头信息，然后交给 IP 模块来发送数据。
 
-<img src="图解网络notes.assets/12-1717056840162-35.jpg" alt="数据包分割" style="zoom:50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/12-1717056840162-35.jpg" alt="数据包分割" style="zoom:50%;" />
 
 > TCP报文生成
 
@@ -277,13 +277,13 @@ TCP 协议里面会有两个端口，一个是浏览器监听的端口（通常�
 
 至此，网络包的报文如下图。
 
-<img src="图解网络notes.assets/13.jpg" alt="TCP 层报文" style="zoom: 50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/13.jpg" alt="TCP 层报文" style="zoom: 50%;" />
 
 ### 远程定位——IP
 
 > IP 包头格式
 
-<img src="图解网络notes.assets/14.jpg" alt="IP 包头格式" style="zoom: 50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/14.jpg" alt="IP 包头格式" style="zoom: 50%;" />
 
 在 IP 协议里面需要有**源地址 IP** 和 **目标地址 IP**：
 
@@ -296,7 +296,7 @@ TCP 协议里面会有两个端口，一个是浏览器监听的端口（通常�
 
 首先查看当前系统的路由表
 
-<img src="图解网络notes.assets/15.jpg" alt="路由表" style="zoom:50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/15.jpg" alt="路由表" style="zoom:50%;" />
 
 根据条记录的子网掩码通过与目标地址进行位运算得出使用的ip
 
@@ -304,7 +304,7 @@ TCP 协议里面会有两个端口，一个是浏览器监听的端口（通常�
 
 > IP 报文生成
 
-<img src="图解网络notes.assets/17-1717057206765-44.jpg" alt="IP 层报文" style="zoom: 33%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/17-1717057206765-44.jpg" alt="IP 层报文" style="zoom: 33%;" />
 
 ### 两点传输——MAC
 
@@ -314,7 +314,7 @@ TCP 协议里面会有两个端口，一个是浏览器监听的端口（通常�
 
 MAC 头部是以太网使用的头部，它包含了接收方和发送方的 MAC 地址等信息。
 
-<img src="图解网络notes.assets/18.jpg" alt="MAC 包头格式" style="zoom:50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/18.jpg" alt="MAC 包头格式" style="zoom:50%;" />
 
 在 MAC 包头里需要**发送方 MAC 地址**和**接收方目标 MAC 地址**，用于**两点之间的传输**。
 
@@ -333,7 +333,7 @@ MAC 头部是以太网使用的头部，它包含了接收方和发送方的 MAC
 
 > MAC 报文生成
 
-<img src="图解网络notes.assets/21.jpg" alt="MAC 层报文" style="zoom:33%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/21.jpg" alt="MAC 层报文" style="zoom:33%;" />
 
 ### 出口——网卡
 
@@ -343,7 +343,7 @@ MAC 头部是以太网使用的头部，它包含了接收方和发送方的 MAC
 
 网卡驱动获取网络包之后，会将其**复制**到网卡内的缓存区中，接着会在其**开头加上报头和起始帧分界符，在末尾加上用于检测错误的帧校验序列**。
 
-<img src="图解网络notes.assets/数据包.drawio.png" alt="数据包" style="zoom:50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/%E6%95%B0%E6%8D%AE%E5%8C%85.drawio.png" alt="数据包" style="zoom:50%;" />
 
 - 起始帧分界符是一个用来表示包起始位置的标记
 - 末尾的 `FCS`（帧校验序列）用来检查包传输过程是否有损坏
@@ -369,7 +369,7 @@ MAC 头部是以太网使用的头部，它包含了接收方和发送方的 MAC
 - 一个是设备的 MAC 地址，
 - 另一个是该设备连接在交换机的哪个端口上。
 
-<img src="图解网络notes.assets/23.jpg" alt="交换机的 MAC 地址表" style="zoom:33%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/23.jpg" alt="交换机的 MAC 地址表" style="zoom:33%;" />
 
 **交换机根据 MAC 地址表查找 MAC 地址，然后将信号发送到相应的端口**。
 
@@ -425,7 +425,7 @@ MAC 头部是以太网使用的头部，它包含了接收方和发送方的 MAC
 
 转发操作分为几个阶段，首先是查询**路由表**判断转发目标。
 
-<img src="图解网络notes.assets/24.jpg" alt="路由器转发" style="zoom: 50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/24.jpg" alt="路由器转发" style="zoom: 50%;" />
 
 > 路由器的发送操作
 
@@ -446,7 +446,7 @@ MAC 头部是以太网使用的头部，它包含了接收方和发送方的 MAC
 
 ### 互相扒皮 —— 服务器 与 客户端
 
-<img src="图解网络notes.assets/25.jpg" alt="网络分层模型" style="zoom:50%;" />
+<img src="https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/25.jpg" alt="网络分层模型" style="zoom:50%;" />
 
 数据包抵达服务器后，服务器会先扒开数据包的 MAC 头部，查看是否和服务器自己的 MAC 地址符合，符合就将包收起来。
 
