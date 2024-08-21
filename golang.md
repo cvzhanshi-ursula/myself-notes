@@ -179,7 +179,7 @@
 
 变量可以通过变量名访问。
 
-Go 语言变量名由字母、数字、下划线组成，其中首个字符不能为数字。
+Go 语言变量名由**字母、数字、下划线**组成，其中首个字符不能为数字。
 
 声明变量的一般形式是使用 var 关键字：
 
@@ -853,7 +853,7 @@ fmt.Print("Hello", "world!")  // Helloworld!
 
 > ### `fmt.Println()`
 
-`fmt.Println()` 函数在其**参数之间自动添加空格**，并在输出结束后添加一个换行符。这使得输出更加适合阅读，特别是当你需要输出多个变量时，每个输出项之间会自然地有一个空格分隔：
+`fmt.Println()` 函数在其**参数之间自动添加空格**，并在**输出结束后添加一个换行符**。这使得输出更加适合阅读，特别是当你需要输出多个变量时，每个输出项之间会自然地有一个空格分隔：
 
 ```go
 fmt.Println("Hello", "world!") //Hello world!
@@ -1293,7 +1293,7 @@ Go 语言函数定义格式如下：
 
 ```go
 func function_name( [parameter list] ) [return_types] {
-   函数体
+   funtion body
 }
 ```
 
@@ -1304,3 +1304,445 @@ func function_name( [parameter list] ) [return_types] {
 - parameter list：参数列表，参数就像一个占位符，当函数被调用时，你可以将值传递给参数，这个值被称为实际参数。参数列表指定的是参数类型、顺序、及参数个数。参数是可选的，也就是说函数也可以不包含参数。
 - return_types：返回类型，函数返回一列值。return_types 是该列值的数据类型。有些功能不需要返回值，这种情况下 return_types 不是必须的。
 - 函数体：函数定义的代码集合。
+
+> 函数的声明
+>
+> - 无参无返回值的函数
+> - 有一个参数的函数
+> - 有两个参数的函数
+> - 有一个返回值的函数
+> - 有两个返回值的函数
+
+```go
+/*
+* @Description: 函数的声明
+* @Version: 1.0.0
+* @File: demo12
+* @Time: 2024-08-21 17:52
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	noParamNoReturn()
+
+	oneParamNoReturn(9)
+
+	twoParamNoReturn(19, 20000)
+
+	maxNum := maxNumber(5, 9)
+	fmt.Println(maxNum)
+
+	num1, num2 := swap(90, 100)
+	fmt.Println(num1, num2)
+
+}
+
+// - 无参无返回值的函数
+func noParamNoReturn() {
+	fmt.Println("无参无返回值的函数")
+}
+
+// - 有一个参数的函数
+func oneParamNoReturn(age int) {
+	fmt.Printf("一个参数的函数 参数age = %d\n", age)
+}
+
+// - 有两个参数的函数
+func twoParamNoReturn(age, money int) {
+	fmt.Printf("一个参数的函数 参数age = %d money = %d\n", age, money)
+}
+
+// - 有一个返回值的函数
+func maxNumber(num1, num2 int) int {
+	/* 声明局部变量 */
+	var result int
+
+	if num1 > num2 {
+		result = num1
+	} else {
+		result = num2
+	}
+	return result
+}
+
+// - 有两个返回值的函数
+func swap(num1, num2 int) (int, int) {
+	return num2, num1
+}
+
+```
+
+### 2.7.2 函数的参数
+
+> **形式参数和实际参数**
+
+形式参数：定义函数时用来接受外部传入数据的参数时形式参数
+
+实际参数：调用函数时传给形式参数的实际数据时实际参数
+
+```go
+// num1, num2 int 形式参数
+func maxNumber(num1, num2 int) int {
+	/* 声明局部变量 */
+	var result int
+
+	if num1 > num2 {
+		result = num1
+	} else {
+		result = num2
+	}
+	return result
+}
+
+func main() {
+	// 5, 9 是实际参数
+	maxNum := maxNumber(5, 9)
+	fmt.Println(maxNum)
+
+}
+```
+
+> **可变参数**
+
+概念：一个函数的参数类型确定，个数不确定，就可以使用可变参数
+
+```go
+/*
+* @Description: 可变参数
+* @Version: 1.0.0
+* @File: demo13
+* @Time: 2024-08-21 19:07
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(getSum(1, 2, 3, 4))
+}
+
+func getSum(nums ...int) int {
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	return sum
+}
+```
+
+### 2.7.3 值传递和引用传递
+
+- **值传递**是指在调用函数时将实际参数复制一份传递到函数中，这样在函数中如果对参数进行修改，将不会影响到实际参数，一般有int、string、bool、array、float64....
+- **引用传递**是指在调用函数时将实际参数的地址传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数，一般有slice、map、chan...
+
+> 值传递
+
+```go
+/*
+* @Description:值传递
+* @Version: 1.0.0
+* @File: demo14
+* @Time: 2024-08-21 23:42
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	array1 := [4]int{1, 2, 3, 4}
+	fmt.Println("array1默认的数据", array1)
+	update(array1)
+	fmt.Println("array1修改后的数据", array1)
+
+}
+
+func update(array [4]int) {
+	fmt.Println("array接收的数据", array)
+	array[2] = 100
+	fmt.Println("array修改后的数据", array)
+}
+//array1默认的数据 [1 2 3 4]
+//array接收的数据 [1 2 3 4]
+//array修改后的数据 [1 2 100 4]
+//array1修改后的数据 [1 2 3 4]
+
+```
+
+> 引用传递
+
+变量在内存中是存放在一定的地址上的，修改变量其实就是修改变量地址上的内容
+
+```go
+/*
+* @Description: 引用传递
+* @Version: 1.0.0
+* @File: demo15
+* @Time: 2024-08-21 23:47
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	s1 := []int{1, 2, 3, 4}
+	fmt.Println("s1默认的数据", s1)
+	update2(s1)
+	fmt.Println("s1修改后的数据", s1)
+
+}
+
+func update2(array []int) {
+	fmt.Println("array接收的数据", array)
+	array[2] = 100
+	fmt.Println("array修改后的数据", array)
+}
+//s1默认的数据 [1 2 3 4]
+//array接收的数据 [1 2 3 4]
+//array修改后的数据 [1 2 100 4]
+//s1修改后的数据 [1 2 100 4]
+
+```
+
+## 2.8 变量作用域
+
+作用域为已声明标识符所表示的常量、类型、变量、函数或包在源代码中的作用范围。
+
+Go 语言中变量可以在三个地方声明：
+
+- 函数内定义的变量称为局部变量
+- 函数外定义的变量称为全局变量
+- 函数定义中的变量称为形式参数
+
+> **局部变量**
+
+在函数体内声明的变量称之为局部变量，它们的作用域只在函数体内，参数和返回值变量也是局部变量。
+
+以下实例中 main() 函数使用了局部变量 a, b, c：
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   /* 声明局部变量 */
+   var a, b, c int 
+
+   /* 初始化参数 */
+   a = 10
+   b = 20
+   c = a + b
+
+   fmt.Printf ("结果： a = %d, b = %d and c = %d\n", a, b, c)
+}
+```
+
+以上实例执行输出结果为：
+
+```go
+结果： a = 10, b = 20 and c = 30
+```
+
+------
+
+> 全局变量
+
+在函数体外声明的变量称之为全局变量，全局变量可以在整个包甚至外部包（被导出后）使用。
+
+全局变量可以在任何函数中使用，以下实例演示了如何使用全局变量：
+
+```go
+package main
+
+import "fmt"
+
+/* 声明全局变量 */
+var g int
+
+func main() {
+
+   /* 声明局部变量 */
+   var a, b int
+
+   /* 初始化参数 */
+   a = 10
+   b = 20
+   g = a + b
+
+   fmt.Printf("结果： a = %d, b = %d and g = %d\n", a, b, g)
+}
+```
+
+以上实例执行输出结果为：
+
+```go
+结果： a = 10, b = 20 and g = 30
+```
+
+Go 语言程序中全局变量与局部变量名称可以相同，但是函数内的局部变量会被优先考虑。实例如下：
+
+```go
+package main
+
+import "fmt"
+
+/* 声明全局变量 */
+var g int = 20
+
+func main() {
+   /* 声明局部变量 */
+   var g int = 10
+
+   fmt.Printf ("结果： g = %d\n",  g)
+}
+```
+
+以上实例执行输出结果为：
+
+```go
+结果： g = 10
+```
+
+------
+
+> 形式参数
+
+形式参数会作为函数的局部变量来使用。实例如下：
+
+```go
+package main
+
+import "fmt"
+
+/* 声明全局变量 */
+var a int = 20;
+
+func main() {
+   /* main 函数中声明局部变量 */
+   var a int = 10
+   var b int = 20
+   var c int = 0
+
+   fmt.Printf("main()函数中 a = %d\n",  a);
+   c = sum( a, b);
+   fmt.Printf("main()函数中 c = %d\n",  c);
+}
+
+/* 函数定义-两数相加 */
+func sum(a, b int) int {
+   fmt.Printf("sum() 函数中 a = %d\n",  a);
+   fmt.Printf("sum() 函数中 b = %d\n",  b);
+
+   return a + b;
+}
+```
+
+以上实例执行输出结果为：
+
+```go
+main()函数中 a = 10
+sum() 函数中 a = 10
+sum() 函数中 b = 20
+main()函数中 c = 30
+```
+
+## 2.9 递归函数
+
+一个函数自己调用自己
+
+注意：递归函数需要有一个出口，每次递归逐渐靠近出口，如果没有会形成死循环
+
+```go
+/*
+* @Description: 递归函数
+* @Version: 1.0.0
+* @File: demo16
+* @Time: 2024-08-22 00:05
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+  // 求和 1-100
+	fmt.Println(getSum2(100))
+}
+
+func getSum2(num int) int {
+	if num == 1 {
+		return 1
+	}
+	return getSum2(num-1) + num
+}
+```
+
+## 2.10 defer
+
+defer函数或者方法：一个函数或方法的执行被延迟了
+
+- 你可以在函数中添加多个defer语句，当函数执行到最后时，这些defer语句会按照逆序执行，最后该函数返回，特别是当你在进行一些打开资源的操作时，遇到错误需要提前返回，在返回前你需要关闭相应的资源，不然很容易造成资源泄露等问题 
+- 如果有很多调用 defer，那么 defer 是采用后进先出（栈）模式。
+
+```go
+/*
+* @Description: defer
+* @Version: 1.0.0
+* @File: demo17
+* @Time: 2024-08-22 00:13
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	f(1)
+	fmt.Println(2)
+	defer f(3)
+	fmt.Println(4)
+	defer f(5)
+	defer f(6)
+	fmt.Println(7)
+	// 1 2 4 7 6 5 3 
+}
+
+func f(num int) {
+	fmt.Println(num)
+}
+```
+
+特别的
+
+```go
+/*
+* @Description: defer
+* @Version: 1.0.0
+* @File: demo17
+* @Time: 2024-08-22 00:13
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	num := 10
+	fmt.Println(num)
+	defer f(num)  // 10在这里已经传进去了，一切准备就绪，就是最后执行
+	num++
+	fmt.Println(num)
+  // 10 11 10
+}
+
+func f(num int) {
+	fmt.Println(num)
+}
+
+```
