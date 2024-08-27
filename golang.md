@@ -1509,7 +1509,7 @@ func update2(array []int) {
 
 ```
 
-## 2.8 变量作用域
+### 2.7.4 变量作用域
 
 作用域为已声明标识符所表示的常量、类型、变量、函数或包在源代码中的作用范围。
 
@@ -1652,7 +1652,7 @@ sum() 函数中 b = 20
 main()函数中 c = 30
 ```
 
-## 2.9 递归函数
+### 2.7.5 递归函数
 
 一个函数自己调用自己
 
@@ -1683,7 +1683,7 @@ func getSum2(num int) int {
 }
 ```
 
-## 2.10 defer
+### 2.7.6 defer
 
 defer函数或者方法：一个函数或方法的执行被延迟了
 
@@ -1746,3 +1746,939 @@ func f(num int) {
 }
 
 ```
+
+### 2.7.7 函数的本质
+
+> 函数的数据类型
+
+```go
+/*
+* @Description: 函数的数据类型
+* @Version: 1.0.0
+* @File: demo18
+* @Time: 2024-08-22 09:59
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	num := 10
+	fmt.Printf("%T\n", num) // int
+	fmt.Printf("%T\n", getSum3) // func(int) int
+}
+
+func getSum3(num int) int {
+	if num == 1 {
+		return 1
+	}
+	return getSum3(num-1) + num
+}
+```
+
+函数的类型：func(参数类型) 返回类型
+
+**函数也是一种数据类型**
+
+> 函数的本质
+
+```go
+/*
+* @Description: 函数的数据类型
+* @Version: 1.0.0
+* @File: demo18
+* @Time: 2024-08-22 09:59
+* @Author: cvzhanshi
+ */
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	num := 10
+
+	fmt.Printf("%T\n", num) // int
+	// 函数名不加括号，函数就是一个变量
+	// 函数名加括号就变成了函数的调用
+	fmt.Printf("%T\n", getSum3) // func(int) int
+
+	// 把函数变量赋值给属性f1
+	// f1就成了函数变量了，加括号就能调用方法了
+	var f1 func(int) int
+	f1 = getSum3
+	sum := f1(10)
+	fmt.Println(sum) //55
+
+	// 查看两个属性的地址
+	fmt.Println(f1) //0x1003aa660
+	fmt.Println(getSum3) //0x1003aa660
+}
+
+func getSum3(num int) int {
+	if num == 1 {
+		return 1
+	}
+	return getSum3(num-1) + num
+}
+```
+
+**函数在go语言中是复合类型，可以看作是一个特殊的变量**
+
+函数名()：函数的调用
+
+函数名：指向函数的内存地址，一种特殊类型的指针变量
+
+### 2.7.8 匿名函数
+
+```go
+/*
+* @Description: 匿名函数
+* @Version: 1.0.0
+* @File: demo19
+* @Time: 2024-08-22 10:24
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+
+	// 定义匿名函数，赋值给变量f1
+	f1 := func() {
+		fmt.Println("我是匿名函数1")
+	}
+
+	f1()
+
+	// 定义一个匿名函数，加括号执行
+	func() {
+		fmt.Println("我是匿名函数2")
+	}()
+	// 我是匿名函数1
+	// 我是匿名函数2
+
+	// 有返回值可以有参数接收返回值
+	sum := func(num1, num2 int) int {
+		fmt.Println("我是匿名函数2")
+		return num1 + num2
+	}(1, 4)
+
+	fmt.Println(sum)
+
+}
+```
+
+Go语言是支持函数式编程的：
+
+1. 将匿名函数作为另外一个函数的参数，回掉函数
+2. 将匿名函数作为另外一个函数的返回值，可以形成闭包结构
+
+### 2.7.9 回调函数
+
+高阶函数：根据go语言的数据类型的特点，可以将一个函数作为另外一个函数的參数。
+
+fun1()， fun2()
+
+将 fun1 函数作为 fun2 这个函数的参数
+
+fun2函数：就叫做高阶函数，接收了一个函数作为參数的函数
+
+fun1函数：就叫做回调函数，作为另外一个函数的参数
+
+```go
+/*
+* @Description: 回调函数
+* @Version: 1.0.0
+* @File: demo20
+* @Time: 2024-08-22 10:46
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	sum := oper(3, 1, add)
+	fmt.Println(sum)
+	num := oper(3, 1, sub)
+	fmt.Println(num)
+}
+
+func oper(num1, num2 int, fun func(int, int) int) int {
+	return fun(num1, num2)
+}
+
+func add(num1, num2 int) int {
+	return num1 + num2
+}
+
+func sub(num1, num2 int) int {
+	return num1 - num2
+}
+```
+
+### 2.7.10 闭包
+
+一个外层函数中，有内层函效，该内层函数中，会操作外层函数的局部变量并且该外层函效的返回值就是这个内层函效。
+
+这个**内层函效和外层函效的局部变量，统称为闭包结构**
+
+**局部变量的生命周期就会发生改变，正常的局部变量会随着函效的调用而创建，随着函效的结束而销毁但是闭包结构中的外层函效的局部变量并不会随着外层函效的结束而销毁，因为内层函数还在继续使用**
+
+```go
+/*
+* @Description: 闭包
+* @Version: 1.0.0
+* @File: demo21
+* @Time: 2024-08-22 11:05
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	f2 := increment()
+	fmt.Println("f2() -> ", f2())
+	fmt.Println("f2() -> ", f2())
+	fmt.Println("f2() -> ", f2())
+
+	f3 := increment()
+	fmt.Println("f3() -> ", f3())
+	fmt.Println("f3() -> ", f3())
+	fmt.Println("f2() -> ", f2())
+	fmt.Println("f3() -> ", f3())
+
+}
+func increment() func() int { // 外层函数
+	// 外层函数定义一个变量
+	i := 0
+	fun := func() int { // 内层函数  没有执行 赋值给fun返回出去了
+		// 内层函数使用了外层函数的变量 形成闭包
+		i++
+		return i
+	}
+	return fun
+}
+// f2() ->  1
+// f2() ->  2
+// f2() ->  3
+// f3() ->  1
+// f3() ->  2
+// f2() ->  4
+// f3() ->  3
+```
+
+可以看出f2中的参数i在结束后并没有销毁，因为内存函数使用了i
+
+## 2.8 数组
+
+Go 语言提供了数组类型的数据结构。
+
+数组是具有相同唯一类型的一组已编号且长度固定的数据项序列，这种类型可以是任意的原始类型例如整型、字符串或者自定义类型。
+
+相对于去声明 **number0, number1, ..., number99** 的变量，使用数组形式 **numbers[0], numbers[1] ..., numbers[99]** 更加方便且易于扩展。
+
+数组元素可以通过索引（位置）来读取（或者修改），索引从 0 开始，第一个元素索引为 0，第二个索引为 1，以此类推。
+
+![image-20240822235413758](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/image-20240822235413758.png)
+
+> 数组的声明
+
+Go 语言数组声明需要指定元素类型及元素个数，语法格式如下：
+
+```go
+var arrayName [size]dataType
+```
+
+其中，**arrayName** 是数组的名称，**size** 是数组的大小，**dataType** 是数组中元素的数据类型。
+
+以下定义了数组 balance 长度为 10 类型为 float32：
+
+```go
+var balance [10]float32
+```
+
+> 数组的初始化
+
+声明一个名为 numbers 的整数数组，其大小为 5，在声明时，数组中的每个元素都会根据其数据类型进行默认初始化，对于整数类型，初始值为 0。
+
+```go
+var numbers [5]int
+```
+
+还可以使用初始化列表来初始化数组的元素：
+
+```go
+var numbers = [5]int{1, 2, 3, 4, 5}
+```
+
+以上代码声明一个大小为 5 的整数数组，并将其中的元素分别初始化为 1、2、3、4 和 5。
+
+另外，还可以使用 **:=** 简短声明语法来声明和初始化数组：
+
+```go
+numbers := [5]int{1, 2, 3, 4, 5}
+```
+
+以上代码创建一个名为 numbers 的整数数组，并将其大小设置为 5，并初始化元素的值。
+
+**注意：**在 Go 语言中，数组的大小是类型的一部分，因此不同大小的数组是不兼容的，也就是说 **[5]int** 和 **[10]int** 是不同的类型。
+
+如果数组长度不确定，可以使用 **...** 代替数组的长度，编译器会根据元素个数自行推断数组的长度：
+
+```go
+var balance = [...]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
+或
+balance := [...]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
+```
+
+如果设置了数组的长度，我们还可以通过指定下标来初始化元素：
+
+```go
+//  将索引为 1 和 3 的元素初始化
+balance := [5]float32{1:2.0,3:7.0}
+```
+
+初始化数组中 **{}** 中的元素个数不能大于 **[]** 中的数字。
+
+```go
+/*
+* @Description: 数组
+* @Version: 1.0.0
+* @File: demo22
+* @Time: 2024-08-23 00:01
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	array := [5]int{1, 2, 3, 4, 5}
+	array[3] = 100
+	fmt.Println(array)
+
+	var i, j, k int
+	// 声明数组的同时快速初始化数组
+	balance := [5]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
+
+	/* 输出数组元素 */
+	for i = 0; i < 5; i++ {
+		fmt.Printf("balance[%d] = %f\n", i, balance[i])
+	}
+
+	balance2 := [...]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
+	/* 输出每个数组元素的值 */
+	for j = 0; j < 5; j++ {
+		fmt.Printf("balance2[%d] = %f\n", j, balance2[j])
+	}
+
+	//  将索引为 1 和 3 的元素初始化
+	balance3 := [5]float32{1: 2.0, 3: 7.0}
+	for k = 0; k < 5; k++ {
+		fmt.Printf("balance3[%d] = %f\n", k, balance3[k])
+	}
+}
+```
+
+> **向函数传递数组**
+
+如果你想向函数传递数组参数，你需要在函数定义时，声明形参为数组，我们可以通过以下两种方式来声明：
+
+**方式一**
+
+形参设定数组大小：
+
+```go
+func myFunction(param [10]int) {
+    ....
+}
+```
+
+**方式二**
+
+形参未设定数组大小：
+
+```go
+func myFunction(param []int) {
+    ....
+}
+```
+
+```go
+/*
+* @Description: 数组
+* @Version: 1.0.0
+* @File: demo22
+* @Time: 2024-08-23 00:01
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+
+	/* 数组长度为 5 */
+	var balance = [5]int{1000, 2, 3, 17, 50}
+	var avg float32
+
+	/* 数组作为参数传递给函数 */
+	avg = getAverage(balance, 5)
+
+	/* 输出返回的平均值 */
+	fmt.Printf("平均值为: %f ", avg)
+}
+
+func getAverage(arr [5]int, size int) float32 {
+	var i, sum int
+	var avg float32
+
+	for i = 0; i < size; i++ {
+		sum += arr[i]
+	}
+
+	avg = float32(sum / size)
+
+	return avg
+}
+
+```
+如果你想要在函数内修改原始数组，可以通过传递数组的指针来实现。
+
+```go
+/*
+* @Description: 数组
+* @Version: 1.0.0
+* @File: demo22
+* @Time: 2024-08-23 00:01
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	// 创建一个包含5个元素的整数数组
+	myArray := [5]int{1, 2, 3, 4, 5}
+
+	fmt.Println("Original Array:", myArray)
+
+	// 传递数组给函数，但不会修改原始数组的值
+	modifyArray(myArray)
+	fmt.Println("Array after modifyArray:", myArray)
+
+	// 传递数组的指针给函数，可以修改原始数组的值
+	modifyArrayWithPointer(&myArray)
+	fmt.Println("Array after modifyArrayWithPointer:", myArray)
+}
+
+// 函数接受一个数组作为参数
+func modifyArray(arr [5]int) {
+	for i := 0; i < len(arr); i++ {
+		arr[i] = arr[i] * 2
+	}
+}
+
+// 函数接受一个数组的指针作为参数
+func modifyArrayWithPointer(arr *[5]int) {
+	for i := 0; i < len(*arr); i++ {
+		(*arr)[i] = (*arr)[i] * 2
+	}
+}
+
+```
+
+## 2.9 指针
+
+变量是一种使用方便的占位符，用于引用计算机内存地址中的内容。Go 语言的取地址符是 &，放到一个变量前使用就会返回相应变量的内存地址。
+
+```go
+/*
+* @Description: 指针
+* @Version: 1.0.0
+* @File: demo23
+* @Time: 2024-08-23 10:18
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	num := 10
+
+	fmt.Printf("%d\n", num) // 10
+	fmt.Printf("%p\n", &num) // 0x1400000e0b0
+}
+```
+
+### **什么是指针**
+
+一个指针变量指向了一个值的内存地址。
+
+类似于变量和常量，在使用指针前你需要声明指针。指针声明格式如下：
+
+```go
+var var_name *var-type
+```
+
+var-type 为指针类型，var_name 为指针变量名，* 号用于指定变量是作为一个指针。以下是有效的指针声明：
+
+```go
+var ip *int        /* 指向整型*/
+var fp *float32    /* 指向浮点型 */
+```
+
+### **使用指针**
+
+指针使用流程：
+
+- 定义指针变量。
+- 为指针变量赋值。
+- 访问指针变量中指向地址的值。
+
+在指针类型前面加上 * 号（前缀）来获取指针所指向的内容。
+
+```go
+/*
+* @Description: 指针
+* @Version: 1.0.0
+* @File: demo23
+* @Time: 2024-08-23 10:18
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+
+	var p1 int // 变量p1
+	p1 = 10
+	var p2 *int             // 指针变量p2
+	p2 = &p1                // 指针变量指向 变量p1的地址
+	fmt.Println(p1)         // 10
+	fmt.Printf("%p\n", &p1) //0x140000a6018
+	fmt.Printf("%p\n", p2)  //0x140000a6018
+	*p2 = 100               // 修改指向地址的值，
+	fmt.Println(p1)         // p1的地址就是指针变量p2指向的地址  所以值会被改变 100
+	fmt.Printf("%d\n", *p2)  // 100
+}
+```
+
+### **空指针**
+
+当一个指针被定义后没有分配到任何变量时，它的值为 nil。
+
+nil 指针也称为空指针。
+
+nil在概念上和其它语言的null、None、nil、NULL一样，都指代零值或空值。
+
+一个指针变量通常缩写为 ptr。
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+   var  ptr *int
+
+   fmt.Printf("ptr 的值为 : %x\n", ptr  ) //ptr 的值为 : 0
+}
+```
+
+空指针判断：
+
+```go
+if(ptr != nil)     /* ptr 不是空指针 */
+if(ptr == nil)    /* ptr 是空指针 */
+
+if ptr == nil {
+  fmt.Println("nil")
+} else {
+  fmt.Println("not nil")
+}
+```
+
+### **指针数组**
+
+声明整型指针数组：
+
+```go
+var ptr [MAX]*int;
+```
+
+ptr 为整型指针数组。因此每个元素都指向了一个值。
+
+```go
+/*
+* @Description: 指针数组
+* @Version: 1.0.0
+* @File: demo24
+* @Time: 2024-08-26 11:01
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+const MAX int = 3
+
+func main() {
+	a := []int{10, 100, 200}
+	var i int
+	var ptr [MAX]*int
+
+	for i = 0; i < MAX; i++ {
+		ptr[i] = &a[i] /* 整数地址赋值给指针数组 */
+	}
+
+	for i = 0; i < MAX; i++ {
+		fmt.Printf("a[%d] = %d\n", i, *ptr[i])
+	}
+}
+```
+
+### 指向指针的指针
+
+如果一个指针变量存放的又是另一个指针变量的地址，则称这个指针变量为指向指针的指针变量。
+
+当定义一个指向指针的指针变量时，第一个指针存放第二个指针的地址，第二个指针存放变量的地址：
+
+![image-20240826110535831](https://cvzhanshi-notes.oss-cn-beijing.aliyuncs.com/notes/image-20240826110535831.png)
+
+指向指针的指针变量声明格式如下：
+
+```go
+var ptr **int
+```
+
+访问指向指针的指针变量值需要使用两个 * 号，如下所示：
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+   var a int
+   var ptr *int
+   var pptr **int
+
+   a = 3000
+
+   /* 指针 ptr 地址 */
+   ptr = &a
+
+   /* 指向指针 ptr 地址 */
+   pptr = &ptr
+
+   /* 获取 pptr 的值 */
+   fmt.Printf("变量 a = %d\n", a )
+   fmt.Printf("指针变量 *ptr = %d\n", *ptr )
+   fmt.Printf("指向指针的指针变量 **pptr = %d\n", **pptr)
+}
+
+
+// 变量 a = 3000
+// 指针变量 *ptr = 3000
+// 指向指针的指针变量 **pptr = 3000
+```
+
+### 指针作为函数参数
+
+Go 语言允许向函数传递指针，只需要在函数定义的参数上设置为指针类型即可。
+
+```go
+/*
+* @Description: 指针作为函数参数
+* @Version: 1.0.0
+* @File: demo26
+* @Time: 2024-08-26 11:22
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+func main() {
+	/* 定义局部变量 */
+	var a int = 100
+	var b int = 200
+
+	fmt.Printf("交换前 a 的值 : %d\n", a)
+	fmt.Printf("交换前 b 的值 : %d\n", b)
+
+	/* 调用函数用于交换值
+	 * &a 指向 a 变量的地址
+	 * &b 指向 b 变量的地址
+	 */
+	swap2(&a, &b)
+
+	fmt.Printf("交换后 a 的值 : %d\n", a)
+	fmt.Printf("交换后 b 的值 : %d\n", b)
+}
+
+func swap2(x *int, y *int) {
+	var temp int
+	temp = *x /* 保存 x 地址的值 */
+	*x = *y   /* 将 y 赋值给 x */
+	*y = temp /* 将 temp 赋值给 y */
+}
+```
+
+## 2.10 结构体
+
+Go 语言中数组可以存储同一类型的数据，但在结构体中我们可以为不同项定义不同的数据类型。
+
+结构体是由一系列具有相同类型或不同类型的数据构成的数据集合。
+
+结构体表示一项记录，比如保存图书馆的书籍记录，每本书有以下属性：
+
+- Title ：标题
+- Author ： 作者
+- Subject：学科
+- ID：书籍ID
+
+------
+
+### 定义结构体
+
+结构体定义需要使用 type 和 struct 语句。struct 语句定义一个新的数据类型，结构体中有一个或多个成员。type 语句设定了结构体的名称。结构体的格式如下：
+
+```go
+type struct_variable_type struct {
+   member definition
+   member definition
+   ...
+   member definition
+}
+```
+
+一旦定义了结构体类型，它就能用于变量的声明，语法格式如下：
+
+```go
+variable_name := structure_variable_type {value1, value2...valuen}
+或
+variable_name := structure_variable_type { key1: value1, key2: value2..., keyn: valuen}
+```
+
+```go
+/*
+* @Description: 结构体
+* @Version: 1.0.0
+* @File: demo27
+* @Time: 2024-08-26 14:44
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+type Books struct {
+	title   string
+	author  string
+	subject string
+	book_id int
+}
+
+func main() {
+	// 创建一个新的结构体
+	fmt.Println(Books{"Go 语言", "www.runoob.com", "Go 语言教程", 6495407})
+
+	// 也可以使用 key => value 格式
+	fmt.Println(Books{title: "Go 语言", author: "www.runoob.com", subject: "Go 语言教程", book_id: 6495407})
+
+	// 忽略的字段为 0 或 空
+	fmt.Println(Books{title: "Go 语言", author: "www.runoob.com"})
+}
+	//{Go 语言 www.runoob.com Go 语言教程 6495407}
+	//{Go 语言 www.runoob.com Go 语言教程 6495407}
+	//{Go 语言 www.runoob.com  0}
+```
+
+### 访问结构体成员
+
+如果要访问结构体成员，需要使用点号 **.** 操作符，格式为：
+
+```go
+// 结构体.成员名"
+
+/*
+* @Description: 结构体
+* @Version: 1.0.0
+* @File: demo27
+* @Time: 2024-08-26 14:44
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+type Books struct {
+	title   string
+	author  string
+	subject string
+	book_id int
+}
+
+func main() {
+	var Book1 Books /* 声明 Book1 为 Books 类型 */
+	var Book2 Books /* 声明 Book2 为 Books 类型 */
+
+	/* book 1 描述 */
+	Book1.title = "Go 语言"
+	Book1.author = "www.runoob.com"
+	Book1.subject = "Go 语言教程"
+	Book1.book_id = 6495407
+
+	/* book 2 描述 */
+	Book2.title = "Python 教程"
+	Book2.author = "www.runoob.com"
+	Book2.subject = "Python 语言教程"
+	Book2.book_id = 6495700
+
+	/* 打印 Book1 信息 */
+	fmt.Printf("Book 1 title : %s\n", Book1.title)
+	fmt.Printf("Book 1 author : %s\n", Book1.author)
+	fmt.Printf("Book 1 subject : %s\n", Book1.subject)
+	fmt.Printf("Book 1 book_id : %d\n", Book1.book_id)
+
+	/* 打印 Book2 信息 */
+	fmt.Printf("Book 2 title : %s\n", Book2.title)
+	fmt.Printf("Book 2 author : %s\n", Book2.author)
+	fmt.Printf("Book 2 subject : %s\n", Book2.subject)
+	fmt.Printf("Book 2 book_id : %d\n", Book2.book_id)
+}
+```
+
+### 结构体作为函数参数
+
+```go
+package main
+
+import "fmt"
+
+type Books struct {
+   title string
+   author string
+   subject string
+   book_id int
+}
+
+func main() {
+   var Book1 Books        /* 声明 Book1 为 Books 类型 */
+   var Book2 Books        /* 声明 Book2 为 Books 类型 */
+
+   /* book 1 描述 */
+   Book1.title = "Go 语言"
+   Book1.author = "www.runoob.com"
+   Book1.subject = "Go 语言教程"
+   Book1.book_id = 6495407
+
+   /* book 2 描述 */
+   Book2.title = "Python 教程"
+   Book2.author = "www.runoob.com"
+   Book2.subject = "Python 语言教程"
+   Book2.book_id = 6495700
+
+   /* 打印 Book1 信息 */
+   printBook(Book1)
+
+   /* 打印 Book2 信息 */
+   printBook(Book2)
+}
+
+func printBook( book Books ) {
+   fmt.Printf( "Book title : %s\n", book.title)
+   fmt.Printf( "Book author : %s\n", book.author)
+   fmt.Printf( "Book subject : %s\n", book.subject)
+   fmt.Printf( "Book book_id : %d\n", book.book_id)
+}
+```
+
+### 结构体指针
+
+定义指向结构体的指针类似于其他指针变量，格式如下：
+
+```go
+var struct_pointer *Books
+```
+
+以上定义的指针变量可以存储结构体变量的地址。查看结构体变量地址，可以将 & 符号放置于结构体变量前：
+
+```go
+struct_pointer = &Book1
+```
+
+使用结构体指针访问结构体成员，使用 "." 操作符：
+
+```go
+struct_pointer.title
+```
+
+demo
+
+```go
+/*
+* @Description: 结构体
+* @Version: 1.0.0
+* @File: demo27
+* @Time: 2024-08-26 14:44
+* @Author: cvzhanshi
+ */
+package main
+
+import "fmt"
+
+type Books struct {
+	title   string
+	author  string
+	subject string
+	book_id int
+}
+
+func main() {
+	var Book1 Books /* 声明 Book1 为 Books 类型 */
+	var Book2 Books /* 声明 Book2 为 Books 类型 */
+
+	/* book 1 描述 */
+	Book1.title = "Go 语言"
+	Book1.author = "www.runoob.com"
+	Book1.subject = "Go 语言教程"
+	Book1.book_id = 6495407
+
+	/* book 2 描述 */
+	Book2.title = "Python 教程"
+	Book2.author = "www.runoob.com"
+	Book2.subject = "Python 语言教程"
+	Book2.book_id = 6495700
+
+	printBook2(Book1)
+
+	printBook(&Book2)
+}
+
+func printBook(book *Books) {
+	fmt.Printf("Book title : %s\n", book.title)
+	fmt.Printf("Book author : %s\n", book.author)
+	fmt.Printf("Book subject : %s\n", book.subject)
+	fmt.Printf("Book book_id : %d\n", book.book_id)
+}
+
+func printBook2(book Books) {
+	fmt.Printf("Book title : %s\n", book.title)
+	fmt.Printf("Book author : %s\n", book.author)
+	fmt.Printf("Book subject : %s\n", book.subject)
+	fmt.Printf("Book book_id : %d\n", book.book_id)
+}
+```
+
