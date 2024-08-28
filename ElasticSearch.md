@@ -2219,7 +2219,7 @@ ElasticSearch8.x之后就默认开始了安全设置，以下记录ES8.x之后�
   elasticsearch.hosts: ["https://localhost:9200"]
   elasticsearch.username: "kibana"
   elasticsearch.password: "kibana"
-  elasticsearch.ssl.certificateAuthorities: [ "C:/cvzhanshi/environment/kibana-8.15.0/config/certs/elasticsearch-ca.pem" ]
+  elasticsearch.ssl.certificateAuthorities: [ "C:/cvzhanshi/environment/kibana-8.15.0/config/elasticsearch-ca.pem" ]
   i18n.locale: "zh-CN"
   ```
 
@@ -2254,8 +2254,8 @@ ElasticSearch8.x之后就默认开始了安全设置，以下记录ES8.x之后�
 
   ```yaml
   server.ssl.enabled: true
-  server.ssl.certificate: C:/cvzhanshi/environment/kibana-8.7.1/config/certs/kibana-server.crt
-  server.ssl.key: C:/cvzhanshi/environment/kibana-8.7.1/config/certs/kibana-server.key
+  server.ssl.certificate: C:/cvzhanshi/environment/kibana-8.15.0/config/kibana-server.crt
+  server.ssl.key: C:/cvzhanshi/environment/kibana-8.15.0/config/kibana-server.key
   ```
 
 **重启es和kibana测试通过https访问9200和5601端口**
@@ -2304,8 +2304,8 @@ xpack.security.transport.ssl:
 # Enables SSL and paths to the PEM-format SSL certificate and SSL key files, respectively.
 # These settings enable SSL for outgoing requests from the Kibana server to the browser.
 server.ssl.enabled: true
-server.ssl.certificate: C:/cvzhanshi/environment/kibana-8.7.1/config/certs/kibana-server.crt
-server.ssl.key: C:/cvzhanshi/environment/kibana-8.7.1/config/certs/kibana-server.key
+server.ssl.certificate: C:/cvzhanshi/environment/kibana-8.15.0/config/kibana-server.crt
+server.ssl.key: C:/cvzhanshi/environment/kibana-8.15.0/config/kibana-server.key
 
 # =================== System: Elasticsearch ===================
 # The URLs of the Elasticsearch instances to use for all your queries.
@@ -2328,7 +2328,7 @@ elasticsearch.password: "kibana"
 
 # Enables you to specify a path to the PEM file for the certificate
 # authority for your Elasticsearch instance.
-elasticsearch.ssl.certificateAuthorities: [ "C:/cvzhanshi/environment/kibana-8.7.1/config/certs/elasticsearch-ca.pem" ]
+elasticsearch.ssl.certificateAuthorities: [ "C:/cvzhanshi/environment/kibana-8.15.0/config/elasticsearch-ca.pem" ]
 
 
 
