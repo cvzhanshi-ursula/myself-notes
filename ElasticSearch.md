@@ -2166,7 +2166,7 @@ ElasticSearch8.x之后就默认开始了安全设置，以下记录ES8.x之后�
   For how long should your certificate be valid? [5y] 5y  # 证书有效期 
   Generate a certificate per node? [y/N]n  # 是否为每个节点生成，单节点就n 集群的话就y 根据情况而定
   Enter all the hostnames that you need, one per line.
-  When you are done, press <ENTER> once more to move on to the next step  # 输入可以可以颁发（通过）证书的域名  直接回车
+  When you are done, press <ENTER> once more to move on to the next step  # 输入可以可以颁发（通过）证书的域名  输入你要通信的域名比如localhost
   Is this correct [Y/n]y
   
   Enter all the IP addresses that you need, one per line.
@@ -2337,8 +2337,14 @@ elasticsearch.ssl.certificateAuthorities: [ "C:/cvzhanshi/environment/kibana-8.1
 i18n.locale: "zh-CN"
 ```
 
-参考链接
+### 参考链接
 
 [基本安全设置](https://www.elastic.co/guide/en/elasticsearch/reference/8.15/security-basic-setup.html)
 
 [传输加密设置https](https://www.elastic.co/guide/en/elasticsearch/reference/8.15/security-basic-setup-https.html#encrypt-kibana-elasticsearch)
+
+### 错误分析
+
+1、kibana启动报错Hostname/IP does not match certificate's altnames: Host: localhost. is not cert's CN: elasticsearch
+
+是生成http证书的时候没有把域名localhost加入到san，重新生成证书，加入域名，使用新证书就行
