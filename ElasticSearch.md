@@ -2090,3 +2090,255 @@ class EsApiApplicationTests {
 >
 > GitHub：https://github.com/cvzhanshi-ursula/es-api
 
+# 补充
+
+ElasticSearch8.x之后就默认开始了安全设置，以下记录ES8.x之后的版本的安全设置
+
+首先
+
+## 基本安全设置
+
+传输层依赖于双向 TLS 来进行节点的加密和身份验证。**正确应用 TLS 可确保恶意节点无法加入集群并与其他节点交换数据**。虽然在 HTTP 层实现用户名和密码身份验证对于保护本地集群很有用，但节点之间通信的安全性需要 TLS。 在**节点之间配置 TLS 是防止未经授权的节点访问集群的基本安全设置**。
+
+在安全集群中，Elasticsearch 节点在与其他节点通信时使用证书来标识自己。 集群必须验证这些证书的真实性。推荐的方法是信任特定的证书颁发机构 (CA)。将节点添加到集群时，它们必须使用由同一 CA 签名的证书。 对于传输层，我们建议使用单独的专用 CA，而不是现有的、可能共享的 CA，以便严格控制节点成员资格。使用elasticsearch-certutil工具为您的集群生成CA。
+
+设置步骤如下：
+
+- 在启动 Elasticsearch 之前， 使用bin目录下的elasticsearch-certutil 工具为生成 CA
+
+  ```bash
+  elasticsearch-certutil ca
+  
+  # 会出现如下提示
+  Please enter the desired output file [elastic-stack-ca.p12]:  # 回车就行  默认文件名elastic-stack-ca.p12
+  Enter password for elastic-stack-ca.p12 :  # 设置CA的密码
+  ```
+
+- 用上面生成的CA生成证书和私钥
+
+  ```sh
+  elasticsearch-certutil cert --ca elastic-stack-ca.p12
+  
+  # 会出现如下提示
+  Enter password for CA (elastic-stack-ca.p12) :  # 输入使用CA的密码  上面设置的
+  Please enter the desired output file [elastic-certificates.p12]:  # 回车就行   默认证书的名字
+  Enter password for elastic-certificates.p12 :  # 设置证书的密码
+  ```
+
+- 把生成的证书拷贝到配置文件夹config中
+
+- 修改es的配置
+
+  ```yaml
+  # 文件末尾添加如下配置
+  xpack.security.enabled: true
+  
+  xpack.security.enrollment.enabled: true
+  
+  # Enable encryption and mutual authentication between cluster nodes
+  xpack.security.transport.ssl:
+    enabled: true
+    verification_mode: certificate
+    keystore.path: elastic-certificates.p12
+    truststore.path: elastic-certificates.p12
+  ```
+
+- 将CA和证书密码存储在Elasticsearch密钥库，使用bin目录下的elasticsearch-keystore工具
+
+  ```sh
+  elasticsearch-keystore add xpack.security.transport.ssl.keystore.secure_password
+  elasticsearch-keystore add xpack.security.transport.ssl.truststore.secure_password
+  ```
+
+## 加密 Elasticsearch 的 HTTP 客户端通信(https)
+
+- 通过运行 Elasticsearch HTTP 证书工具elasticsearch-certutil以生成证书签名请求 (CSR)
+
+  ```sh
+  elasticsearch-certutil http
+  
+  # 会出现如下提示
+  Generate a CSR? [y/N]n
+  Use an existing CA? [y/N]y  # 是否使用已经存在的ca，基本安全设置已经生成过了
+  CA Path: elastic-stack-ca.p12  # 输入ca的相对配置文件夹的路径，应该把ca复制到config中
+  Password for elastic-stack-ca.p12: # ca的密码
+  You may enter the validity period in years (e.g. 3Y), months (e.g. 18M), or days (e.g. 90D)
+  For how long should your certificate be valid? [5y] 5y  # 证书有效期 
+  Generate a certificate per node? [y/N]n  # 是否为每个节点生成，单节点就n 集群的话就y 根据情况而定
+  Enter all the hostnames that you need, one per line.
+  When you are done, press <ENTER> once more to move on to the next step  # 输入可以可以颁发（通过）证书的域名  直接回车
+  Is this correct [Y/n]y
+  
+  Enter all the IP addresses that you need, one per line.
+  When you are done, press <ENTER> once more to move on to the next step.  # 输入可以可以颁发（通过）证书的IP  直接回车
+  Is this correct [Y/n]y
+  Do you wish to change any of these options? [y/N]n  # 是否修改上述信息
+  Provide a password for the "http.p12" file:  [<ENTER> for none] # 设置http证书请求的密码
+  What filename should be used for the output zip file? [C:\cvzhanshi\environment\elasticsearch-8.15.0\elasticsearch-ssl-http.zip]  # 生成的文件名  回车默认
+  ```
+
+- 把生成的文件解压
+
+  ```
+  /elasticsearch
+  |_ README.txt
+  |_ http.p12
+  |_ sample-elasticsearch.yml
+  /kibana
+  |_ README.txt
+  |_ elasticsearch-ca.pem
+  |_ sample-kibana.yml
+  ```
+
+- 把http.p12复制到es的config中，elasticsearch-ca.pem复制到kibana的config中
+
+- 修改es的配置文件末尾追加
+
+  ```yaml
+  # Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
+  xpack.security.http.ssl:
+    enabled: true
+    keystore.path: http.p12
+    truststore.path: http.p12
+  ```
+
+- 将私钥的密码添加到 Elasticsearch 中的安全设置中
+
+  ```sh
+  elasticsearch-keystore add xpack.security.http.ssl.keystore.secure_password
+  elasticsearch-keystore add xpack.security.http.ssl.truststore.secure_password
+  ```
+
+## 加密 Kibana 和 Elasticsearch 之间的通信
+
+- 将上面的elasticsearch-ca.pem复制到kibana的config中
+
+- 修改配置文件
+
+  ```yaml
+  elasticsearch.hosts: ["https://localhost:9200"]
+  elasticsearch.username: "kibana"
+  elasticsearch.password: "kibana"
+  elasticsearch.ssl.certificateAuthorities: [ "C:/cvzhanshi/environment/kibana-8.15.0/config/certs/elasticsearch-ca.pem" ]
+  i18n.locale: "zh-CN"
+  ```
+
+## 加密浏览器和 Kibana 之间的通信
+
+- 通过es的工具elasticsearch-certutil为 Kibana 生成服务器证书和私钥。
+
+  ```sh
+  elasticsearch-certutil csr -name kibana-server -dns example.com,www.example.com
+  ```
+
+  得到一个文件解压目录如下:
+
+  ```
+  /kibana-server
+  |_ kibana-server.csr
+  |_ kibana-server.key
+  ```
+
+- 解压csr-bundle.zip文件，获取kibana-server.csr未签名安全证书和kibana-server.key未加密私钥
+
+- 将 kibana-server.csr 证书签名请求发送到您的内部 CA 或受信任的 CA 进行签名，以获得签名证书。
+
+  ```sh
+  # 可以使用命令  生成kibana-server.crt证书
+  openssl x509 -req -in ./kibana-server.csr -signkey ./kibana-server.key -out ./kibana-server.crt
+  ```
+
+- 把证书拷贝到config目录下
+
+- 修改配置文件
+
+  ```yaml
+  server.ssl.enabled: true
+  server.ssl.certificate: C:/cvzhanshi/environment/kibana-8.7.1/config/certs/kibana-server.crt
+  server.ssl.key: C:/cvzhanshi/environment/kibana-8.7.1/config/certs/kibana-server.key
+  ```
+
+**重启es和kibana测试通过https访问9200和5601端口**
+
+## 附录
+
+### 完整配置文件
+
+ elasticsearch.yml
+
+```yaml
+# ----------------------------------- Paths ------------------------------------
+#
+# Path to directory where to store the data (separate multiple locations by comma):
+#
+path.data: C:\\cvzhanshi\\environment\\elasticsearch-8.15.0\\data
+#
+# Path to log files:
+#
+path.logs: C:\\cvzhanshi\\environment\\elasticsearch-8.15.0\\logs
+
+
+xpack.security.enabled: true
+
+xpack.security.enrollment.enabled: true
+
+# Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: http.p12
+  truststore.path: http.p12
+
+# Enable encryption and mutual authentication between cluster nodes
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: elastic-certificates.p12
+  truststore.path: elastic-certificates.p12
+
+```
+
+ kibana.yml
+
+```yaml
+# =================== System: Kibana Server (Optional) ===================
+# Enables SSL and paths to the PEM-format SSL certificate and SSL key files, respectively.
+# These settings enable SSL for outgoing requests from the Kibana server to the browser.
+server.ssl.enabled: true
+server.ssl.certificate: C:/cvzhanshi/environment/kibana-8.7.1/config/certs/kibana-server.crt
+server.ssl.key: C:/cvzhanshi/environment/kibana-8.7.1/config/certs/kibana-server.key
+
+# =================== System: Elasticsearch ===================
+# The URLs of the Elasticsearch instances to use for all your queries.
+elasticsearch.hosts: ["https://localhost:9200"]
+
+# If your Elasticsearch is protected with basic authentication, these settings provide
+# the username and password that the Kibana server uses to perform maintenance on the Kibana
+# index at startup. Your Kibana users still need to authenticate with Elasticsearch, which
+# is proxied through the Kibana server.
+elasticsearch.username: "kibana"
+elasticsearch.password: "kibana"
+
+
+
+# =================== System: Elasticsearch (Optional) ===================
+# These files are used to verify the identity of Kibana to Elasticsearch and are required when
+# xpack.security.http.ssl.client_authentication in Elasticsearch is set to required.
+#elasticsearch.ssl.certificate: /path/to/your/client.crt
+#elasticsearch.ssl.key: /path/to/your/client.key
+
+# Enables you to specify a path to the PEM file for the certificate
+# authority for your Elasticsearch instance.
+elasticsearch.ssl.certificateAuthorities: [ "C:/cvzhanshi/environment/kibana-8.7.1/config/certs/elasticsearch-ca.pem" ]
+
+
+
+# Specifies locale to be used for all localizable strings, dates and number formats.
+# Supported languages are the following: English (default) "en", Chinese "zh-CN", Japanese "ja-JP", French "fr-FR".
+i18n.locale: "zh-CN"
+```
+
+参考连接
+
+[基本安全设置](https://www.elastic.co/guide/en/elasticsearch/reference/8.15/security-basic-setup.html)
+
+[传输加密设置https](https://www.elastic.co/guide/en/elasticsearch/reference/8.15/security-basic-setup-https.html#encrypt-kibana-elasticsearch)
