@@ -2337,7 +2337,7 @@ elasticsearch.ssl.certificateAuthorities: [ "C:/cvzhanshi/environment/kibana-8.7
 i18n.locale: "zh-CN"
 ```
 
-参考连接
+参考链接
 
 [基本安全设置](https://www.elastic.co/guide/en/elasticsearch/reference/8.15/security-basic-setup.html)
 
